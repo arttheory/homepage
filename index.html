@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。マンツーマンレッスンや出張トレーニングで一生ブレない本物の技術を伝授します。">
+    <meta name="keywords" content="大阪, ラテアート教室, ラテアートセミナー, マンツーマン, ラテアート">
+    <title>大阪のラテアート教室・セミナー | Theory & Art - 再現性を極めた専門講座</title>
+    <!-- プレミアム感を演出するためのフォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* カラーパレット */
+            --primary: #1F1916;
+            /* ディープエスプレッソ */
+            --secondary: #2C241F;
+            /* 少し明るいコーヒー */
+            --accent: #C59A5C;
+            /* ラテ・ゴールド */
+            --accent-hover: #D8B17A;
+            --accent-light: #EBD8B8;
+            --bg-main: #FAF9F6;
+            /* クリーンなクリーム色 */
+            --bg-card: #FFFFFF;
+            --text-dark: #2C241F;
+            --text-light: #FAF9F6;
+            --text-gray: #7D736A;
+            --border: #E8E3DD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 見出し用のフォント設定 */
+        h1,
+        h2,
+        h3,
+        h4,
+        .serif {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- スクロールアニメーション用クラス --- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.3s;
+        }
+
+        /* --- ヒーローセクション --- */
+        header {
+            position: relative;
+            /* ダークなシネマティック画像とグラデーションのオーバーレイ */
+            background: linear-gradient(rgba(31, 25, 22, 0.8), rgba(31, 25, 22, 0.95)),
+                url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: var(--text-light);
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg-main));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            letter-spacing: 0.12em;
+            margin-bottom: 25px;
+            color: var(--accent);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 40px;
+            color: rgba(250, 249, 246, 0.9);
+            line-height: 2;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite, fadeIn 2s forwards 1s;
+            opacity: 0;
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-15px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-7px) translateX(-50%);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- 共通レイアウト --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        section {
+            margin-bottom: 140px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- 実績セクション --- */
+        .hero-stats {
+            display: flex;
+            justify-content: space-around;
+            background: var(--bg-card);
+            padding: 50px 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(31, 25, 22, 0.05);
+            text-align: center;
+            margin-top: -120px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--border);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .stat-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- コンセプト --- */
+        .concept-text {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 2.2;
+        }
+
+        .concept-text p {
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
+        }
+
+        .pain-point {
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(197, 154, 92, 0.08);
+            border-left: 4px solid var(--accent);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 40px !important;
+            line-height: 2;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        /* --- サービスカード --- */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 60px 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(31, 25, 22, 0.08);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .service-card h3::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* --- 料金表 --- */
+        .pricing-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .price-table th,
+        .price-table td {
+            padding: 30px 40px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-table tr:last-child th,
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table th {
+            background-color: var(--primary);
+            color: var(--text-light);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            width: 35%;
+        }
+
+        .price-table td:nth-child(2) {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.25rem;
+            width: 30%;
+        }
+
+        .price-table td:nth-child(3) {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .price-table tr {
+            transition: background 0.3s;
+        }
+
+        .price-table tbody tr:hover {
+            background-color: rgba(232, 227, 221, 0.3);
+        }
+
+        /* --- Before/After --- */
+        .before-after {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .ba-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .ba-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .ba-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .ba-label {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(31, 25, 22, 0.85);
+            color: var(--accent-light);
+            padding: 10px 30px;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            backdrop-filter: blur(8px);
+            white-space: nowrap;
+            border: 1px solid rgba(197, 154, 92, 0.3);
+        }
+
+        /* --- 予約フォーム --- */
+        .booking-section {
+            background: var(--primary);
+            background-image: radial-gradient(circle at center, #2C241F 0%, #1F1916 100%);
+            color: var(--text-light);
+            padding: 120px 20px;
+            margin-bottom: 0;
+            position: relative;
+        }
+
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--bg-main), transparent);
+        }
+
+        .booking-section .section-title {
+            color: var(--text-light);
+        }
+
+        .booking-section .section-subtitle {
+            color: var(--accent);
+        }
+
+        .booking-wrapper {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .booking-form {
+            background: var(--bg-card);
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            color: var(--text-dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: var(--bg-main);
+            transition: all 0.3s;
+            color: var(--text-dark);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #A39B92;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(197, 154, 92, 0.15);
+            background-color: #FFF;
+        }
+
+        .submit-btn {
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.15rem;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            letter-spacing: 0.1em;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(197, 154, 92, 0.35);
+        }
+
+        /* --- フッター --- */
+        footer {
+            background: #15110E;
+            color: var(--text-gray);
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+
+        .footer-logo {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            letter-spacing: 0.1em;
+        }
+
+        .sns-links {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .sns-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sns-links a:hover {
+            color: var(--accent);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- レスポンシブ --- */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 40px;
+                padding: 40px 20px;
+                margin-top: -60px;
+            }
+
+            .stat-item h3 {
+                font-size: 2.2rem;
+            }
+
+            .price-table th,
+            .price-table td {
+                padding: 20px 15px;
+                display: block;
+                width: 100%;
+            }
+
+            .price-table tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+            }
+
+            .price-table th {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .booking-form {
+                padding: 40px 25px;
+            }
+
+            .container {
+                padding: 60px 20px;
+            }
+
+            section {
+                margin-bottom: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="hero-content">
+            <h1 class="hero-title cinzel">Theory & Art</h1>
+            <p class="hero-subtitle serif">「感覚」を「理論」へ。<br>大阪で学ぶ、再現性を極めたラテアート教室・セミナー</p>
+        </div>
+        <div class="scroll-indicator cinzel">SCROLL</div>
+    </header>
+
+    <div class="container">
+        <section id="achievement">
+            <div class="hero-stats fade-up">
+                <div class="stat-item">
+                    <h3 class="cinzel">10+</h3>
+                    <p>国内大会 受賞歴</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="cinzel">Logical</h3>
+                    <p>ロジカルな指導体系</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="concept" class="fade-up delay-1">
+            <div class="section-header">
+                <p class="section-subtitle">Concept</p>
+                <h2 class="section-title cinzel">Philosophy</h2>
+            </div>
+            <div class="concept-text">
+                <p class="pain-point">
+                    「YouTubeを何時間見ても、自分の手では再現できない…」<br>
+                    「たまに綺麗に描けるけど、理由がわからず安定しない…」
+                </p>
+                <p>独学でラテアートを練習していると、必ずそんな「壁」にぶつかります。<br>
+                しかし、それはあなたのセンスがないからではありません。<br>
+                原因は、技術を<span class="highlight">「感覚」</span>だけで捉えていることにあります。</p>
+                
+                <p>美しいラテアートは、スチームの温度、ピッチャーの角度、流量といった<br>
+                <span class="highlight">「変数の緻密なコントロール」</span>によって生まれる科学です。</p>
+                
+                <p>当講座では、10回以上の大会受賞で培ったロジカルなアプローチで、<br>
+                あなたの「なんとなく」を「確信」に変え、<br>
+                一生ブレない<span class="highlight">『本物の技術』</span>へと引き上げます。</p>
+            </div>
+        </section>
+
+        <section id="services" class="fade-up">
+            <div class="section-header">
+                <p class="section-subtitle">Services</p>
+                <h2 class="section-title cinzel">Lessons</h2>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3 class="serif">マンツーマンレッスン</h3>
+                    <p>大阪の当施設にて実施。現在の技術レベルを分析し、目標（基礎の習得、提供品質の向上、大会出場など）に合わせてカリキュラムを柔軟に構築します。徹底的なフィードバックで上達を加速させます。</p>
+                </div>
+                <div class="service-card delay-1">
+                    <h3 class="serif">出張・店舗トレーニング</h3>
+                    <p>貴店にお伺いし、実際の現場環境でトレーニングを行います。スタッフ全体のスキルアップや、提供オペレーションの最適化に。マシンの特性に合わせた注ぎ方を指導します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="fade-up">
+            <div class="section-header">
+                <p class="section-subtitle">Plans</p>
+                <h2 class="section-title cinzel">Pricing</h2>
+            </div>
+            <div class="pricing-wrapper">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>プラン</th>
+                            <th>料金 (税込)</th>
+                            <th>備考</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>マンツーマンレッスン</td>
+                            <td>¥6,000 <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/
+                                    90分</span></td>
+                            <td>当施設での実施</td>
+                        </tr>
+                        <tr>
+                            <td>出張レッスン</td>
+                            <td>¥8,000 <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/
+                                    90分</span></td>
+                            <td>出張費込み</td>
+                        </tr>
+                        <tr>
+                            <td>マンスリーサブスク</td>
+                            <td>¥20,000 <span
+                                    style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/ 月</span>
+                            </td>
+                            <td>90分 × 4回通える集中プラン</td>
+                        </tr>
+                        <tr>
+                            <td>集団講習・店舗研修</td>
+                            <td style="color: var(--text-dark);">要相談</td>
+                            <td>人数・時間・内容に応じます</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align: right; margin-top: 15px; font-size: 0.95rem; color: var(--text-gray);">※
+                レッスン時間は基本的に90分を基準としております。</p>
+        </section>
+
+        <!-- 写真準備中のため一時コメントアウト
+        <section id="voice" class="fade-up">
+            <div class="section-header">
+                <p class="section-subtitle">Results</p>
+                <h2 class="section-title cinzel">Before / After</h2>
+            </div>
+            <div class="before-after">
+                <div class="ba-item">
+                    <img src="./images/latte_1.jpg" alt="受講前">
+                    <p class="ba-label">Before</p>
+                </div>
+                <div class="ba-item delay-1">
+                    <img src="./images/latte_2.jpg" alt="受講後">
+                    <p class="ba-label">After (3ヶ月受講)</p>
+                </div>
+            </div>
+        </section>
+        -->
+    </div>
+
+    <section id="booking" class="booking-section">
+        <div class="container fade-up" style="padding-top: 0; padding-bottom: 0;">
+            <div class="section-header">
+                <p class="section-subtitle">Contact</p>
+                <h2 class="section-title cinzel">Reserve</h2>
+            </div>
+            <div class="booking-wrapper">
+                <div class="booking-form">
+                    <form action="https://formsubmit.co/arttheory.reservation@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label for="name">お名前</label>
+                            <input type="text" id="name" name="name" placeholder="例：山田 太郎" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="plan">希望プラン</label>
+                            <select id="plan" name="plan">
+                                <option value="individual">マンツーマンレッスン</option>
+                                <option value="business">出張レッスン</option>
+                                <option value="subscription">サブスクリプション</option>
+                                <option value="other">その他（集団・相談）</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">現在の悩み・目標</label>
+                            <textarea id="message" name="message" rows="5"
+                                placeholder="「注ぎの安定感を高めたい」「大会で予選通過したい」など、お気軽にご記入ください"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">予約・お問い合わせを送信する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo cinzel">Theory & Art</div>
+        <div class="sns-links">
+            <a href="https://www.youtube.com/@onii_latteart" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                YouTube
+            </a>
+            <a href="https://www.instagram.com/onii_latteart/" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                </svg>
+                Instagram
+            </a>
+        </div>
+        <p>&copy; 2026 Theory & Art Latte School. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // スクロール時に要素をフェードインさせる
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            const animatedElements = document.querySelectorAll('.fade-up');
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
