@@ -596,6 +596,17 @@
             letter-spacing: 0.05em;
         }
 
+        .price-notes {
+            text-align: right;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+        }
+
+        .price-notes p {
+            margin-bottom: 5px;
+        }
+
         /* --- FAQ --- */
         .faq-container {
             max-width: 800px;
@@ -720,6 +731,12 @@
             .service-card h3::before {
                 width: 25px;
                 margin-right: 10px;
+            }
+
+            .price-notes {
+                text-align: left;
+                padding-left: 1em;
+                text-indent: -1em;
             }
 
             .price-table th,
@@ -852,9 +869,10 @@
                     </tbody>
                 </table>
             </div>
-            <p style="text-align: right; margin-top: 15px; font-size: 0.95rem; color: var(--text-gray);">※
-                レッスン時間は基本的に90分を基準としております。<br>
-                ※ 他都道府県への出張につきましては、別途要相談となります。</p>
+            <div class="price-notes">
+                <p>※ レッスン時間は基本的に90分を基準としております。</p>
+                <p>※ 他都道府県への出張につきましては、別途要相談となります。</p>
+            </div>
         </section>
 
         <!-- 写真準備中のため一時コメントアウト
