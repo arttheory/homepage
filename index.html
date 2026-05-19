@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。マンツーマンレッスンや出張トレーニングで一生ブレない本物の技術を伝授します。">
+    <meta name="description"
+        content="大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。マンツーマンレッスンや出張トレーニングで一生ブレない本物の技術を伝授します。">
     <meta name="keywords" content="大阪, ラテアート教室, ラテアートセミナー, マンツーマン, ラテアート">
     <title>大阪のラテアート教室・セミナー | Theory & Art - 再現性を極めた専門講座</title>
     <!-- プレミアム感を演出するためのフォント -->
@@ -594,6 +595,99 @@
             letter-spacing: 0.05em;
         }
 
+        /* --- FAQ --- */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: var(--primary);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(197, 154, 92, 0.05);
+        }
+
+        .faq-question span {
+            font-size: 1.05rem;
+            padding-right: 20px;
+        }
+
+        .faq-question .icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .faq-question .icon::before,
+        .faq-question .icon::after {
+            content: '';
+            position: absolute;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question .icon::before {
+            top: 7px;
+            left: 0;
+            width: 16px;
+            height: 2px;
+        }
+
+        .faq-question .icon::after {
+            top: 0;
+            left: 7px;
+            width: 2px;
+            height: 16px;
+        }
+
+        .faq-item.active .faq-question .icon::after {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            background: var(--bg-main);
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            opacity: 1;
+            border-top: 1px dashed var(--border);
+        }
+
+        .faq-answer p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.8;
+            padding: 20px 25px;
+        }
+
         /* --- レスポンシブ --- */
         @media (max-width: 768px) {
             .hero-title {
@@ -679,15 +773,16 @@
                     「たまに綺麗に描けるけど、理由がわからず安定しない…」
                 </p>
                 <p>独学でラテアートを練習していると、必ずそんな「壁」にぶつかります。<br>
-                しかし、それはあなたのセンスがないからではありません。<br>
-                原因は、技術を<span class="highlight">「感覚」</span>だけで捉えていることにあります。</p>
-                
+                    しかし、それはあなたのセンスがないからではありません。<br>
+                    原因は、技術を<span class="highlight">「感覚」</span>だけで捉えていることにあります。</p>
+
                 <p>美しいラテアートは、スチームの温度、ピッチャーの角度、流量といった<br>
-                <span class="highlight">「変数の緻密なコントロール」</span>によって生まれる科学です。</p>
-                
+                    <span class="highlight">「変数の緻密なコントロール」</span>によって生まれる科学です。
+                </p>
+
                 <p>当講座では、10回以上の大会受賞で培ったロジカルなアプローチで、<br>
-                あなたの「なんとなく」を「確信」に変え、<br>
-                一生ブレない<span class="highlight">『本物の技術』</span>へと引き上げます。</p>
+                    あなたの「なんとなく」を「確信」に変え、<br>
+                    一生ブレない<span class="highlight">『本物の技術』</span>へと引き上げます。</p>
             </div>
         </section>
 
@@ -750,7 +845,8 @@
                     </tbody>
                 </table>
             </div>
-            <p style="text-align: right; margin-top: 15px; font-size: 0.95rem; color: var(--text-gray);">※ レッスン時間は基本的に90分を基準としております。<br>
+            <p style="text-align: right; margin-top: 15px; font-size: 0.95rem; color: var(--text-gray);">※
+                レッスン時間は基本的に90分を基準としております。<br>
                 ※ 他都道府県への出張につきましては、別途要相談となります。</p>
         </section>
 
@@ -772,6 +868,51 @@
             </div>
         </section>
         -->
+
+        <section id="faq" class="fade-up">
+            <div class="section-header">
+                <p class="section-subtitle">FAQ</p>
+                <h2 class="section-title cinzel">Q&A</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q. 全くの未経験ですが、受講しても大丈夫でしょうか？</span>
+                        <div class="icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A. もちろん大丈夫です。未経験の方にはマシンの触り方やミルクのスチームの基礎から丁寧にお伝えします。むしろ変な癖がついていない分、上達が早い方も多いです。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q. 持ち物は何か必要ですか？</span>
+                        <div class="icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A. 基本的に必要な道具（ピッチャー、カップ等）はすべてこちらでご用意しております。もし普段お使いで慣れているピッチャーがあれば、ぜひご持参ください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q. どのようなマシンを使用しますか？</span>
+                        <div class="icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A. 当施設では業務用エスプレッソマシンを使用します。出張レッスンの場合は、店舗様がお使いのマシンのスチーム圧などの特性に合わせて注ぎ方やスチームを指導いたします。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q. 友達と一緒に受講することは可能ですか？</span>
+                        <div class="icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A. はい、ペアでの受講も大歓迎です！ペア割などもございますので、お申し込み時の「現在の悩み・目標」欄にてその旨をお伝えください。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <section id="booking" class="booking-section">
@@ -850,6 +991,19 @@
             const animatedElements = document.querySelectorAll('.fade-up');
             animatedElements.forEach(el => {
                 observer.observe(el);
+            });
+
+            // FAQアコーディオン
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentNode;
+                    // 他のアコーディオンを開いた時に閉じる場合は以下を有効化
+                    // document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    //     if (otherItem !== item) otherItem.classList.remove('active');
+                    // });
+                    item.classList.toggle('active');
+                });
             });
         });
     </script>
