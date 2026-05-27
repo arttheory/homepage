@@ -145,6 +145,27 @@
             line-height: 2;
         }
 
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 18px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            opacity: 0;
+            animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 25px rgba(197, 154, 92, 0.35);
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -780,6 +801,7 @@
         <div class="hero-content">
             <h1 class="hero-title cinzel">Theory & Art</h1>
             <p class="hero-subtitle serif">「感覚」を「理論」へ。<br class="br-pc">大阪で学ぶ、再現性を極めたラテアート教室・セミナー</p>
+            <a href="#booking" class="hero-btn">今すぐ予約・相談する</a>
         </div>
         <div class="scroll-indicator cinzel">SCROLL</div>
     </header>
@@ -867,7 +889,10 @@
                             <td>出張費込み（大阪府内に限る）</td>
                         </tr>
                         <tr>
-                            <td>マンスリーサブスク</td>
+                            <td>
+                                マンスリーサブスク
+                                <span style="display: block; font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: 4px; letter-spacing: 0.05em;">通常 ¥24,000 → ¥4,000 お得</span>
+                            </td>
                             <td style="white-space: nowrap;">¥20,000 <span
                                     style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/ 月</span>
                             </td>
