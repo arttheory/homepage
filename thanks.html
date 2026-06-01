@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送信完了 | Theory & Art</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1F1916;
+            --accent: #C59A5C;
+            --accent-hover: #D8B17A;
+            --bg-main: #FAF9F6;
+            --text-dark: #2C241F;
+            --text-light: #FAF9F6;
+            --text-gray: #7D736A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            margin-bottom: 60px;
+        }
+
+        .icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(197, 154, 92, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+
+        .icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        p {
+            color: var(--text-gray);
+            line-height: 2;
+            font-size: 1rem;
+            max-width: 480px;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 40px;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(197, 154, 92, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">Theory & Art</div>
+
+    <div class="icon">
+        <svg viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+    </div>
+
+    <h1>送信が完了しました</h1>
+    <p>お問い合わせ・ご予約のご連絡ありがとうございます。</p>
+    <p>内容を確認のうえ、2〜3営業日以内にメールにてご連絡いたします。</p>
+    <p>しばらくお待ちください。</p>
+
+    <a href="./index.html" class="btn">トップページへ戻る</a>
+</body>
+</html>

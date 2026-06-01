@@ -8,7 +8,49 @@
         content="大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。マンツーマンレッスンや出張トレーニングで一生ブレない本物の技術を伝授します。">
     <meta name="keywords" content="大阪, ラテアート教室, ラテアートセミナー, マンツーマン, ラテアート">
     <title>大阪のラテアート教室・セミナー | Theory & Art - 再現性を極めた専門講座</title>
-    <!-- プレミアム感を演出するためのフォント -->
+
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="大阪のラテアート教室・セミナー | Theory & Art">
+    <meta property="og:description" content="大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。マンツーマンレッスンや出張トレーニングで一生ブレない本物の技術を伝授します。">
+    <meta property="og:url" content="https://arttheory.github.io/homepage/">
+    <meta property="og:image" content="https://arttheory.github.io/homepage/images/pagetop.PNG">
+    <meta property="og:site_name" content="Theory & Art">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="大阪のラテアート教室・セミナー | Theory & Art">
+    <meta name="twitter:description" content="大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。">
+    <meta name="twitter:image" content="https://arttheory.github.io/homepage/images/pagetop.PNG">
+
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Theory & Art",
+      "description": "大阪でラテアート教室・セミナーをお探しなら「Theory & Art」へ。独学の限界を突破する、感覚に頼らないロジカルなラテアート専門講座。",
+      "url": "https://arttheory.github.io/homepage/",
+      "image": "https://arttheory.github.io/homepage/images/pagetop.PNG",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "大阪市",
+        "addressRegion": "大阪府",
+        "addressCountry": "JP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.6473,
+        "longitude": 135.5139
+      },
+      "areaServed": "大阪府",
+      "priceRange": "¥6,000〜",
+      "sameAs": [
+        "https://www.youtube.com/@onii_latteart",
+        "https://www.instagram.com/onii_latteart/"
+      ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -59,6 +101,153 @@
 
         .cinzel {
             font-family: 'Cinzel', serif;
+        }
+
+        /* --- ナビゲーション --- */
+        #site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 20px;
+            background: transparent;
+            transition: background 0.4s, box-shadow 0.4s;
+        }
+
+        #site-nav.scrolled {
+            background: rgba(31, 25, 22, 0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            color: var(--accent);
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        #site-nav.scrolled .nav-logo {
+            opacity: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(250, 249, 246, 0.85);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links .nav-cta {
+            background: var(--accent);
+            color: var(--text-light);
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-links .nav-cta:hover {
+            background: var(--accent-hover);
+            color: var(--text-light);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(31, 25, 22, 0.98);
+                padding: 20px 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+        }
+
+        /* --- 中間CTA --- */
+        .inline-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .inline-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .inline-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(197, 154, 92, 0.35);
         }
 
         /* --- スクロールアニメーション用クラス --- */
@@ -797,6 +986,23 @@
 
 <body>
 
+    <nav id="site-nav">
+        <div class="nav-inner">
+            <span class="nav-logo cinzel">Theory & Art</span>
+            <ul class="nav-links">
+                <li><a href="#concept">Philosophy</a></li>
+                <li><a href="#services">Lessons</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#voice">Results</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#booking" class="nav-cta">予約する</a></li>
+            </ul>
+            <button class="nav-hamburger" aria-label="メニューを開く">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
     <header>
         <div class="hero-content">
             <h1 class="hero-title cinzel">Theory & Art</h1>
@@ -838,6 +1044,9 @@
 
                 <p>当講座では、10回以上の大会受賞で培ったロジカルなアプローチで、<br class="br-pc">あなたの「なんとなく」を「確信」に変え、<br class="br-pc">一生ブレない<span
                         class="highlight">『本物の技術』</span>へと引き上げます。</p>
+            </div>
+            <div class="inline-cta">
+                <a href="#booking" class="inline-btn">まずは無料相談・予約する</a>
             </div>
         </section>
 
@@ -909,6 +1118,9 @@
             <div class="price-notes">
                 <p>※ レッスン時間は基本的に90分を基準としております。</p>
                 <p>※ 他都道府県への出張につきましては、別途要相談となります。</p>
+            </div>
+            <div class="inline-cta">
+                <a href="#booking" class="inline-btn">このプランで予約・相談する</a>
             </div>
         </section>
 
@@ -995,8 +1207,9 @@
             </div>
             <div class="booking-wrapper">
                 <div class="booking-form">
-                    <form action="https://api.web3forms.com/submit" method="POST">
+                    <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
                         <input type="hidden" name="access_key" value="46906018-a220-4965-a0e1-a28a843ea4b1">
+                        <input type="hidden" name="redirect" value="https://arttheory.github.io/homepage/thanks.html">
                         <div class="form-group">
                             <label for="name">お名前</label>
                             <input type="text" id="name" name="name" placeholder="例：山田 太郎" required>
@@ -1047,6 +1260,27 @@
         <p>&copy; 2026 Theory & Art Latte School. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // ナビ：スクロールでスタイル変更
+            const nav = document.getElementById('site-nav');
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 80);
+            });
+
+            // ナビ：ハンバーガーメニュー
+            const hamburger = document.querySelector('.nav-hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+            });
+
+            // ナビ：リンクをクリックしたらメニューを閉じる
+            navLinks.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => navLinks.classList.remove('open'));
+            });
+        });
+    </script>
     <script>
         // スクロール時に要素をフェードインさせる
         document.addEventListener("DOMContentLoaded", () => {
