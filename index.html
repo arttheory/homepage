@@ -54,934 +54,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;500;600&display=swap&font-display=swap"
         rel="stylesheet">
-    <style>
-        :root {
-            /* カラーパレット */
-            --primary: #1F1916;
-            /* ディープエスプレッソ */
-            --secondary: #2C241F;
-            /* 少し明るいコーヒー */
-            --accent: #C59A5C;
-            /* ラテ・ゴールド */
-            --accent-hover: #D8B17A;
-            --accent-light: #EBD8B8;
-            --bg-main: #FAF9F6;
-            /* クリーンなクリーム色 */
-            --bg-card: #FFFFFF;
-            --text-dark: #2C241F;
-            --text-light: #FAF9F6;
-            --text-gray: #7D736A;
-            --border: #E8E3DD;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-dark);
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* 見出し用のフォント設定 */
-        h1,
-        h2,
-        h3,
-        h4,
-        .serif {
-            font-family: 'Noto Serif JP', serif;
-        }
-
-        .cinzel {
-            font-family: 'Cinzel', serif;
-        }
-
-        /* --- ナビゲーション --- */
-        #site-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 0 20px;
-            background: transparent;
-            transition: background 0.4s, box-shadow 0.4s;
-        }
-
-        #site-nav.scrolled {
-            background: rgba(31, 25, 22, 0.96);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-
-        .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-
-        .nav-logo {
-            color: var(--accent);
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        #site-nav.scrolled .nav-logo {
-            opacity: 1;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: rgba(250, 249, 246, 0.85);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-links .nav-cta {
-            background: var(--accent);
-            color: var(--text-light);
-            padding: 10px 22px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-
-        .nav-links .nav-cta:hover {
-            background: var(--accent-hover);
-            color: var(--text-light);
-        }
-
-        .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .nav-hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--accent);
-            transition: all 0.3s;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 64px;
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                gap: 0;
-                background: rgba(31, 25, 22, 0.98);
-                padding: 20px 0;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 14px 20px;
-                font-size: 1rem;
-            }
-
-            .nav-hamburger {
-                display: flex;
-            }
-        }
-
-        /* --- 中間CTA --- */
-        .inline-cta {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .inline-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--text-light);
-            padding: 16px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .inline-btn:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(197, 154, 92, 0.35);
-        }
-
-        /* --- スクロールアニメーション用クラス --- */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .delay-1 {
-            transition-delay: 0.1s;
-        }
-
-        .delay-2 {
-            transition-delay: 0.3s;
-        }
-
-        /* --- ヒーローセクション --- */
-        header {
-            position: relative;
-            /* ダークなシネマティック画像とグラデーションのオーバーレイ */
-            background: linear-gradient(rgba(31, 25, 22, 0.85), rgba(31, 25, 22, 0.98)),
-                url('./images/pagetop.PNG') 35% 55% / cover;
-            color: var(--text-light);
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent, var(--bg-main));
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            letter-spacing: 0.12em;
-            margin-bottom: 25px;
-            color: var(--accent);
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            margin-bottom: 40px;
-            color: rgba(250, 249, 246, 0.9);
-            line-height: 2;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--text-light);
-            padding: 18px 45px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            opacity: 0;
-            animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
-        }
-
-        .hero-btn:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-3px) !important;
-            box-shadow: 0 10px 25px rgba(197, 154, 92, 0.35);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            animation: bounce 2s infinite, fadeIn 2s forwards 1s;
-            opacity: 0;
-            color: var(--accent);
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 50px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0) translateX(-50%);
-            }
-
-            40% {
-                transform: translateY(-15px) translateX(-50%);
-            }
-
-            60% {
-                transform: translateY(-7px) translateX(-50%);
-            }
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* --- 共通レイアウト --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        section {
-            margin-bottom: 140px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-title {
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            letter-spacing: 0.08em;
-            font-weight: 500;
-        }
-
-        .section-subtitle {
-            font-size: 0.9rem;
-            color: var(--accent);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-family: 'Cinzel', serif;
-        }
-
-        /* --- 実績セクション --- */
-        .hero-stats {
-            display: flex;
-            justify-content: space-around;
-            background: var(--bg-card);
-            padding: 50px 30px;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(31, 25, 22, 0.05);
-            text-align: center;
-            margin-top: -120px;
-            position: relative;
-            z-index: 10;
-            border: 1px solid var(--border);
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .stat-item p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-        }
-
-        /* --- コンセプト --- */
-        .concept-text {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto;
-            font-size: 1.15rem;
-            color: var(--text-dark);
-            line-height: 2.2;
-        }
-
-        .concept-text p {
-            margin-bottom: 30px;
-            letter-spacing: 0.05em;
-        }
-
-        .pain-point {
-            font-weight: 500;
-            color: var(--primary);
-            background: rgba(197, 154, 92, 0.08);
-            border-left: 4px solid var(--accent);
-            padding: 20px 25px;
-            border-radius: 0 12px 12px 0;
-            text-align: left;
-            display: inline-block;
-            margin-bottom: 40px !important;
-            line-height: 2;
-        }
-
-        .highlight {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1.25rem;
-        }
-
-        /* --- サービスカード --- */
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            padding: 60px 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--border);
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(31, 25, 22, 0.08);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .service-card h3::before {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 1px;
-            background: var(--accent);
-        }
-
-        .service-card p {
-            color: var(--text-gray);
-            font-size: 1rem;
-        }
-
-        /* --- 料金表 --- */
-        .pricing-wrapper {
-            background: var(--bg-card);
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .price-table th,
-        .price-table td {
-            padding: 30px 40px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .price-table tr:last-child th,
-        .price-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .price-table th {
-            background-color: var(--primary);
-            color: var(--text-light);
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            width: 35%;
-        }
-
-        .price-table td:nth-child(2) {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1.25rem;
-            width: 30%;
-        }
-
-        .price-table td:nth-child(3) {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        .price-table tr {
-            transition: background 0.3s;
-        }
-
-        .price-table tbody tr:hover {
-            background-color: rgba(232, 227, 221, 0.3);
-        }
-
-        /* --- Before/After --- */
-        .before-after {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-            align-items: center;
-        }
-
-        .ba-item {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .ba-item img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .ba-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .ba-label {
-            position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(31, 25, 22, 0.85);
-            color: var(--accent-light);
-            padding: 10px 30px;
-            border-radius: 40px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            backdrop-filter: blur(8px);
-            white-space: nowrap;
-            border: 1px solid rgba(197, 154, 92, 0.3);
-        }
-
-        /* --- 予約フォーム --- */
-        .booking-section {
-            background: var(--primary);
-            background-image: radial-gradient(circle at center, #2C241F 0%, #1F1916 100%);
-            color: var(--text-light);
-            padding: 120px 20px;
-            margin-bottom: 0;
-            position: relative;
-        }
-
-        .booking-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, var(--bg-main), transparent);
-        }
-
-        .booking-section .section-title {
-            color: var(--text-light);
-        }
-
-        .booking-section .section-subtitle {
-            color: var(--accent);
-        }
-
-        .booking-wrapper {
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
-        .booking-form {
-            background: var(--bg-card);
-            padding: 60px;
-            border-radius: 16px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            color: var(--text-dark);
-            position: relative;
-            z-index: 2;
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 500;
-            color: var(--primary);
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 18px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            font-family: inherit;
-            background-color: var(--bg-main);
-            transition: all 0.3s;
-            color: var(--text-dark);
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #A39B92;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(197, 154, 92, 0.15);
-            background-color: #FFF;
-        }
-
-        .submit-btn {
-            background-color: var(--accent);
-            color: var(--text-light);
-            padding: 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.15rem;
-            font-weight: 600;
-            width: 100%;
-            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-            letter-spacing: 0.1em;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(197, 154, 92, 0.35);
-        }
-
-        /* --- フッター --- */
-        footer {
-            background: #15110E;
-            color: var(--text-gray);
-            text-align: center;
-            padding: 80px 20px 40px;
-        }
-
-        .footer-logo {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 30px;
-            letter-spacing: 0.1em;
-        }
-
-        .sns-links {
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .sns-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 0.08em;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sns-links a:hover {
-            color: var(--accent);
-        }
-
-        footer p {
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-
-        .price-notes {
-            text-align: right;
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: var(--text-gray);
-        }
-
-        .price-notes p {
-            margin-bottom: 5px;
-        }
-
-        /* --- FAQ --- */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-        }
-
-        .faq-question {
-            padding: 20px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            color: var(--primary);
-            transition: background 0.3s;
-        }
-
-        .faq-question:hover {
-            background: rgba(197, 154, 92, 0.05);
-        }
-
-        .faq-question span {
-            font-size: 1.05rem;
-            padding-right: 20px;
-        }
-
-        .faq-question .icon {
-            position: relative;
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-        }
-
-        .faq-question .icon::before,
-        .faq-question .icon::after {
-            content: '';
-            position: absolute;
-            background: var(--accent);
-            border-radius: 2px;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-question .icon::before {
-            top: 7px;
-            left: 0;
-            width: 16px;
-            height: 2px;
-        }
-
-        .faq-question .icon::after {
-            top: 0;
-            left: 7px;
-            width: 2px;
-            height: 16px;
-        }
-
-        .faq-item.active .faq-question .icon::after {
-            transform: rotate(90deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.4s ease;
-            background: var(--bg-main);
-            opacity: 0;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            opacity: 1;
-            border-top: 1px dashed var(--border);
-        }
-
-        .faq-answer p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.8;
-            padding: 20px 25px;
-        }
-
-        /* --- レスポンシブ --- */
-        @media (max-width: 768px) {
-            .br-pc {
-                display: none;
-            }
-
-            .concept-text {
-                text-align: left;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 11vw, 2.8rem);
-                white-space: nowrap;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 40px;
-                padding: 40px 20px;
-                margin-top: -60px;
-            }
-
-            .stat-item h3 {
-                font-size: 2.2rem;
-            }
-
-            .service-card h3 {
-                font-size: 1.25rem;
-            }
-
-            .service-card h3::before {
-                width: 25px;
-                margin-right: 10px;
-            }
-
-            .price-notes {
-                text-align: left;
-                padding-left: 1em;
-                text-indent: -1em;
-            }
-
-            .price-table th,
-            .price-table td {
-                padding: 20px 15px;
-                display: block;
-                width: 100%;
-            }
-
-            .price-table tr {
-                display: block;
-                margin-bottom: 20px;
-                border: 1px solid var(--border);
-                border-radius: 8px;
-            }
-
-            .price-table th {
-                border-bottom: 1px solid var(--border);
-            }
-
-            .booking-form {
-                padding: 40px 25px;
-            }
-
-            .container {
-                padding: 60px 20px;
-            }
-
-            section {
-                margin-bottom: 100px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -1077,39 +152,33 @@
                 <table class="price-table">
                     <thead>
                         <tr>
-                            <th>プラン</th>
-                            <th>料金 (税込)</th>
-                            <th>備考</th>
+                            <th scope="col">プラン</th>
+                            <th scope="col">料金 (税込)</th>
+                            <th scope="col">備考</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>マンツーマンレッスン</td>
-                            <td style="white-space: nowrap;">¥6,000 <span
-                                    style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/
-                                    90分</span></td>
+                            <td>¥6,000 <span class="price-unit">/ 90分</span></td>
                             <td>指定スペース（天王寺・中崎町）での実施</td>
                         </tr>
                         <tr>
                             <td>出張レッスン</td>
-                            <td style="white-space: nowrap;">¥8,000 <span
-                                    style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/
-                                    90分</span></td>
+                            <td>¥8,000 <span class="price-unit">/ 90分</span></td>
                             <td>出張費込み（大阪府内に限る）</td>
                         </tr>
                         <tr>
                             <td>
                                 マンスリーサブスク
-                                <span style="display: block; font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: 4px; letter-spacing: 0.05em;">通常 ¥24,000 → ¥4,000 お得</span>
+                                <span class="price-note">通常 ¥24,000 → ¥4,000 お得</span>
                             </td>
-                            <td style="white-space: nowrap;">¥20,000 <span
-                                    style="font-size: 0.85rem; font-weight: normal; color: var(--text-gray);">/ 月</span>
-                            </td>
+                            <td>¥20,000 <span class="price-unit">/ 月</span></td>
                             <td>90分 × 4回通える集中プラン</td>
                         </tr>
                         <tr>
                             <td>集団講習・店舗研修</td>
-                            <td style="color: var(--text-dark);">要相談</td>
+                            <td class="price-consultation">要相談</td>
                             <td>人数・時間・内容に応じます</td>
                         </tr>
                     </tbody>
@@ -1131,11 +200,17 @@
             </div>
             <div class="before-after">
                 <div class="ba-item">
-                    <img src="./images/bf_before_1.JPG" alt="受講前">
+                    <img src="./images/bf_before_1.JPG"
+                         alt="受講前のラテアート：ハートの形が崩れ、模様の境界がぼやけている状態"
+                         loading="lazy"
+                         width="600" height="600">
                     <p class="ba-label">Before</p>
                 </div>
                 <div class="ba-item delay-1">
-                    <img src="./images/bf_after_1.jpg" alt="受講後">
+                    <img src="./images/bf_after_1.jpg"
+                         alt="1ヶ月受講後のラテアート：ハートの輪郭がくっきりと整い、左右対称に描けている状態"
+                         loading="lazy"
+                         width="600" height="600">
                     <p class="ba-label">After (1ヶ月受講後)</p>
                 </div>
             </div>
@@ -1144,13 +219,13 @@
         <section id="faq" class="fade-up">
             <div class="section-header">
                 <p class="section-subtitle">FAQ</p>
-                <h2 class="section-title cinzel">Q&A</h2>
+                <h2 class="section-title cinzel">Q&amp;A</h2>
             </div>
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                         <span>Q. レッスンの実施場所はどこですか？</span>
-                        <div class="icon"></div>
+                        <div class="icon" aria-hidden="true"></div>
                     </div>
                     <div class="faq-answer">
                         <p>A.
@@ -1159,27 +234,27 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                         <span>Q. 全くの未経験ですが、受講しても大丈夫でしょうか？</span>
-                        <div class="icon"></div>
+                        <div class="icon" aria-hidden="true"></div>
                     </div>
                     <div class="faq-answer">
                         <p>A. もちろん大丈夫です。未経験の方にはマシンの触り方やミルクのスチームの基礎から丁寧にお伝えします。むしろ変な癖がついていない分、上達が早い方も多いです。</p>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                         <span>Q. 持ち物は何か必要ですか？</span>
-                        <div class="icon"></div>
+                        <div class="icon" aria-hidden="true"></div>
                     </div>
                     <div class="faq-answer">
                         <p>A. 基本的に必要な道具（ピッチャー、カップ等）はすべてこちらでご用意しております。もし普段お使いで慣れているピッチャーがあれば、ぜひご持参ください。</p>
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                         <span>Q. どのようなマシンを使用しますか？</span>
-                        <div class="icon"></div>
+                        <div class="icon" aria-hidden="true"></div>
                     </div>
                     <div class="faq-answer">
                         <p>A. 各スペース（天王寺・中崎町）では業務用エスプレッソマシンを使用します。出張レッスンの場合は、店舗様がお使いのマシンのスチーム圧などの特性に合わせて注ぎ方やスチームを指導いたします。
@@ -1187,9 +262,9 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
                         <span>Q. 友達と一緒に受講することは可能ですか？</span>
-                        <div class="icon"></div>
+                        <div class="icon" aria-hidden="true"></div>
                     </div>
                     <div class="faq-answer">
                         <p>A. はい、ペアでの受講も大歓迎です！ペア割などもございますので、お申し込み時の「現在の悩み・目標」欄にてその旨をお伝えください。</p>
@@ -1207,16 +282,20 @@
             </div>
             <div class="booking-wrapper">
                 <div class="booking-form">
-                    <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                    <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" novalidate>
                         <input type="hidden" name="access_key" value="46906018-a220-4965-a0e1-a28a843ea4b1">
                         <input type="hidden" name="redirect" value="https://arttheory.github.io/homepage/thanks.html">
                         <div class="form-group">
-                            <label for="name">お名前</label>
-                            <input type="text" id="name" name="name" placeholder="例：山田 太郎" required>
+                            <label for="name">お名前<span class="required-mark" aria-hidden="true">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="例：山田 太郎"
+                                   required autocomplete="name">
+                            <p class="field-error" id="name-error">お名前を入力してください。</p>
                         </div>
                         <div class="form-group">
-                            <label for="email">メールアドレス</label>
-                            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                            <label for="email">メールアドレス<span class="required-mark" aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="example@mail.com"
+                                   required autocomplete="email">
+                            <p class="field-error" id="email-error">有効なメールアドレスを入力してください。</p>
                         </div>
                         <div class="form-group">
                             <label for="plan">希望プラン</label>
@@ -1242,15 +321,15 @@
     <footer>
         <div class="footer-logo cinzel">Theory & Art</div>
         <div class="sns-links">
-            <a href="https://www.youtube.com/@onii_latteart" target="_blank">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.youtube.com/@onii_latteart" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path
                         d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
                 YouTube
             </a>
-            <a href="https://www.instagram.com/onii_latteart/" target="_blank">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.instagram.com/onii_latteart/" target="_blank" rel="noopener noreferrer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path
                         d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                 </svg>
@@ -1262,56 +341,109 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+
             // ナビ：スクロールでスタイル変更
             const nav = document.getElementById('site-nav');
             window.addEventListener('scroll', () => {
                 nav.classList.toggle('scrolled', window.scrollY > 80);
-            });
+            }, { passive: true });
 
             // ナビ：ハンバーガーメニュー
             const hamburger = document.querySelector('.nav-hamburger');
             const navLinks = document.querySelector('.nav-links');
             hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('open');
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
             });
 
             // ナビ：リンクをクリックしたらメニューを閉じる
             navLinks.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => navLinks.classList.remove('open'));
+                a.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
             });
-        });
-    </script>
-    <script>
-        // スクロール時に要素をフェードインさせる
-        document.addEventListener("DOMContentLoaded", () => {
+
+            // スクロールアニメーション
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-            const animatedElements = document.querySelectorAll('.fade-up');
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-            // FAQアコーディオン
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', () => {
+            // FAQアコーディオン（キーボード操作対応）
+            document.querySelectorAll('.faq-question').forEach(question => {
+                const toggle = () => {
                     const item = question.parentNode;
-                    // 他のアコーディオンを開いた時に閉じる場合は以下を有効化
-                    // document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    //     if (otherItem !== item) otherItem.classList.remove('active');
-                    // });
-                    item.classList.toggle('active');
+                    const isActive = item.classList.toggle('active');
+                    question.setAttribute('aria-expanded', isActive);
+                };
+                question.addEventListener('click', toggle);
+                question.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggle();
+                    }
                 });
             });
+
+            // フォームバリデーション
+            const form = document.getElementById('contactForm');
+            const nameInput  = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const nameError  = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+
+            const showError = (input, errorEl) => {
+                input.setAttribute('aria-invalid', 'true');
+                errorEl.classList.add('visible');
+            };
+
+            const clearError = (input, errorEl) => {
+                input.removeAttribute('aria-invalid');
+                errorEl.classList.remove('visible');
+            };
+
+            nameInput.addEventListener('blur', () => {
+                nameInput.value.trim()
+                    ? clearError(nameInput, nameError)
+                    : showError(nameInput, nameError);
+            });
+
+            emailInput.addEventListener('blur', () => {
+                emailInput.validity.valid
+                    ? clearError(emailInput, emailError)
+                    : showError(emailInput, emailError);
+            });
+
+            form.addEventListener('submit', e => {
+                let valid = true;
+
+                if (!nameInput.value.trim()) {
+                    showError(nameInput, nameError);
+                    valid = false;
+                } else {
+                    clearError(nameInput, nameError);
+                }
+
+                if (!emailInput.validity.valid) {
+                    showError(emailInput, emailError);
+                    valid = false;
+                } else {
+                    clearError(emailInput, emailError);
+                }
+
+                if (!valid) {
+                    e.preventDefault();
+                    // 最初のエラー項目にフォーカス
+                    form.querySelector('[aria-invalid="true"]').focus();
+                }
+            });
+
         });
     </script>
 </body>
